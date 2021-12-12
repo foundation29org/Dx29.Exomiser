@@ -1,0 +1,28 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: dx29-exomiser-deployment
+  namespace: app-ingress
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dx29-exomiser-backend
+  template:
+    metadata:
+      labels:
+        app: dx29-exomiser-backend
+    spec:
+      containers:
+        - name: dx29-exomiser
+          image: <uri>/dx29exomiser
+          ports:
+          - containerPort: 80
+          volumeMounts:
+          - name: secrets
+            mountPath: /app/secrets
+            readOnly: true
+      volumes:
+      - name: secrets
+        secret:
+          secretName: secret-name

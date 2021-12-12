@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>edbef476-e664-48ac-afb4-c7844a4612ec</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.4" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.13" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Dx29.Azure\Dx29.Azure.csproj" />
+    <ProjectReference Include="..\Dx29.Exomiser\Dx29.Exomiser.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="ExomiserAnalysis.yaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\webapi-pipelines.yml" Link="~Deployment\webapi-pipelines.yml" />
+    <None Include="..\..\manifests\app-deployment.yml" Link="~Deployment\app-deployment.yml" />
+    <None Include="..\..\manifests\app-service.yml" Link="~Deployment\app-service.yml" />
+  </ItemGroup>
+
+</Project>

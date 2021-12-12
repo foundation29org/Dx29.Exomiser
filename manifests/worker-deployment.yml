@@ -1,0 +1,42 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: dx29-exomiser-worker
+  namespace: app-ingress
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dx29-exomiser-worker
+  template:
+    metadata:
+      labels:
+        app: dx29-exomiser-worker
+    spec:
+      containers:
+        - name: dx29-exomiser
+          image: <uri>/dx29exomiserworker
+          ports:
+          - containerPort: 80
+          resources:
+            requests:
+              cpu: "2"
+              memory: "12Gi"
+            limits:
+              cpu: "2"
+              memory: "14Gi"
+          volumeMounts:
+          - name: secrets
+            mountPath: /app/secrets
+            readOnly: true
+          - name: fileshare
+            mountPath: /exomiser-cli-12.1.0/data
+            readOnly: true
+      volumes:
+      - name: secrets
+        secret:
+          secretName: secret-name
+      - name: fileshare
+        azureFile:
+          secretName: exomiserfiles-secret-name
+          shareName: data

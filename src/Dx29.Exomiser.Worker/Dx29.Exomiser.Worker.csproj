@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>dotnet-Dx29.Exomiser.Worker-2BA08B1E-F594-4C3F-99C9-0CB5B51B0623</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="runtimeconfig.template.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="runtimeconfig.template.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.13" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Dx29.Exomiser\Dx29.Exomiser.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\worker-pipelines.yml" Link="~Deployment\worker-pipelines.yml" />
+    <None Include="..\..\manifests\worker-deployment.yml" Link="~Deployment\worker-deployment.yml" />
+  </ItemGroup>
+</Project>

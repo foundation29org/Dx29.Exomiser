@@ -11,7 +11,7 @@ resources:
 variables:
 
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: '6d2321df-8d64-49ad-9bf8-24589529f08d'
+  dockerRegistryServiceConnection: '<connection>'
   imageRepository: 'dx29exomiserworker'
   containerRegistry: '<uri>'
   dockerfilePath: 'src/Dx29.Exomiser.Worker/Dockerfile'
